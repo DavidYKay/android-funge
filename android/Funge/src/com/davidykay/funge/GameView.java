@@ -19,7 +19,7 @@ package com.davidykay.funge;
 
 import java.util.Random;
 
-import com.eclecticself.funge.R;
+import com.davidykay.funge.R;
 
 import android.content.Context;
 import android.content.res.Resources;

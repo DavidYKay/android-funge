@@ -1,6 +1,6 @@
 package com.davidykay.funge;
 
-import com.eclecticself.funge.R;
+import com.davidykay.funge.R;
 
 import android.app.Activity;
 import android.os.Bundle;

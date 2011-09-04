@@ -5,7 +5,7 @@ import com.davidykay.funge.interpreter.FungeModel;
 import com.davidykay.funge.interpreter.FungePlane;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
-import com.eclecticself.funge.R;
+import com.davidykay.funge.R;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -60,8 +60,11 @@ public class FungeView extends View {
 
     mTilePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mTilePaint.setColor(HEX_COLOR_BLACK);
+
     mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mTextPaint.setColor(HEX_COLOR_RED);
+    mTextPaint.setTextSize(20.0f);
+
     mBmpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mGridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mGridPaint.setColor(

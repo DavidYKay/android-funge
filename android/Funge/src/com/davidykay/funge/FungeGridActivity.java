@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.davidykay.funge.interpreter.FungePlane;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
-import com.eclecticself.funge.R;
+import com.davidykay.funge.R;
 
 /**
  * Shows the funge grid. This is the signature activity in our application.

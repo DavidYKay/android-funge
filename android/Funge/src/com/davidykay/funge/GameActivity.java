@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 import com.davidykay.funge.GameView.ICellListener;
 import com.davidykay.funge.GameView.State;
-import com.eclecticself.funge.R;
+import com.davidykay.funge.R;
 
 
 public class GameActivity extends Activity {

@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     >
 
-    <com.eclecticself.funge.FungeView
+    <com.davidykay.funge.FungeView
         android:id="@+id/game_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
