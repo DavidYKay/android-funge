@@ -1,13 +1,6 @@
 package com.davidykay.funge;
 
 
-import com.davidykay.funge.interpreter.FungeModel;
-import com.davidykay.funge.interpreter.FungePlane;
-import com.davidykay.funge.interpreter.tiles.ArithmeticTile;
-import com.davidykay.funge.interpreter.tiles.IntegerTile;
-import com.davidykay.funge.interpreter.tiles.Tile;
-import com.davidykay.funge.R;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -15,13 +8,21 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import com.davidykay.funge.interpreter.FungeModel;
+import com.davidykay.funge.interpreter.InstructionPointer;
+import com.davidykay.funge.interpreter.tiles.ArithmeticTile;
+import com.davidykay.funge.interpreter.tiles.IntegerTile;
+import com.davidykay.funge.interpreter.tiles.Tile;
 
 /**
  * View representing the Befunge game board.
@@ -31,11 +32,8 @@ public class FungeView extends View {
   private static final int MARGIN = 4;
   private static final String TAG = "FungeView";
   
-  private static final int HEX_COLOR_YELLOW = 0xAABBCCDD;
-  private static final int HEX_COLOR_BLUE   = 0xDDCCBBAA;
-  private static final int HEX_COLOR_WHITE  = 0xFFFFFFFF;
-  private static final int HEX_COLOR_BLACK  = 0x000000FF;
-  private static final int HEX_COLOR_RED    = 0xFF0000FF;
+  private static final int CHECKER_A    = 0xAABBCCDD;
+  private static final int CHECKER_B    = 0xDDCCBBAA;
 
   // UI
   private Bitmap mCellBackground;
@@ -46,6 +44,7 @@ public class FungeView extends View {
   private Paint mLinePaint; 
   private Paint mTilePaint; 
   private Paint mTextPaint; 
+  private Paint mPointerPaint; 
   
   // Model
   private FungeModel mModel; 
@@ -60,20 +59,23 @@ public class FungeView extends View {
     }
 
     mTilePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    mTilePaint.setColor(HEX_COLOR_BLACK);
+    mTilePaint.setColor(Color.BLACK);
 
+    mPointerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    mPointerPaint.setColor(Color.RED);
+    mPointerPaint.setTextSize(30.0f);
+    
     mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    mTextPaint.setColor(HEX_COLOR_RED);
+    mTextPaint.setColor(Color.BLUE);
     mTextPaint.setTextSize(40.0f);
 
     mBmpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
     mGridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    mGridPaint.setColor(
-      0xAABBCCDD
-      //0x00ff00ff
-      );
+    mGridPaint.setColor(Color.DKGRAY);
+
     mLinePaint = new Paint();
-    mLinePaint.setColor(HEX_COLOR_WHITE);
+    mLinePaint.setColor(Color.WHITE);
     mLinePaint.setStrokeWidth(5);
     mLinePaint.setStyle(Style.STROKE);
   }
@@ -85,6 +87,8 @@ public class FungeView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
+
+    // Render the board.
 
     int columns = mModel.getWidth();
     int rows = mModel.getHeight();
@@ -123,15 +127,15 @@ public class FungeView extends View {
           // If empty, draw a checker.
           if (y % 2 == 0) {
             if (x % 2 == 0) {
-              mGridPaint.setColor(HEX_COLOR_YELLOW);
+              mGridPaint.setColor(CHECKER_A);
             } else {
-              mGridPaint.setColor(HEX_COLOR_BLUE);
+              mGridPaint.setColor(CHECKER_B);
             }
           } else {
             if (x % 2 == 0) {
-              mGridPaint.setColor(HEX_COLOR_BLUE);
+              mGridPaint.setColor(CHECKER_B);
             } else {
-              mGridPaint.setColor(HEX_COLOR_YELLOW);
+              mGridPaint.setColor(CHECKER_A);
             }
           }
           // Draw the box.
@@ -164,13 +168,27 @@ public class FungeView extends View {
       xPixels = 0;
       yPixels += cellHeight;
     }
+
+    // Render the instruction pointer.
+    InstructionPointer pointer = mModel.getPointer();
+    Point pos = pointer.getPosition();
+    drawString("P", 
+               new Rect(
+                   //pos.x - cellWidth / 2, pos.y - cellHeight / 2, 
+                   //pos.x + cellWidth / 2, pos.y + cellHeight / 2
+                   pos.x, pos.y, 
+                   pos.x + cellWidth, pos.y + cellHeight 
+                 ),
+               mPointerPaint,
+               canvas
+               );
   }
 
   private void drawString(String string, Rect rect, Paint paint, Canvas canvas) {
     Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-    float textWidth = mTextPaint.measureText(string, 0, string.length());
+    float textWidth = mTextPaint.measureText(string);
     Rect bounds = new Rect();
-    mTextPaint.getTextBounds(string, 0, string.length(), bounds);
+    paint.getTextBounds(string, 0, string.length(), bounds);
     //float textHeight = fontMe
     float[] coordinates = new float[] { 
       (rect.left + rect.right) / 2 - (textWidth / 2),
@@ -180,7 +198,7 @@ public class FungeView extends View {
     canvas.drawPosText(
         string,
         coordinates,
-        mTextPaint);
+        paint);
     Log.v(TAG, String.format("Drawing %s at: (%f, %f)", 
                              string,
                              coordinates[0],
