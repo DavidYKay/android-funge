@@ -17,4 +17,7 @@ public interface FungeModel {
   public void setTileAtLocation(Tile tile, Point point);
   public void setTileAtLocation(Tile tile, int x, int y);
 
+  /** Advance to the next step of the simulation. */
+  public void advance();
+
 }

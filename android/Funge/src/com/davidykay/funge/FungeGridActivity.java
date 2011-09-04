@@ -1,9 +1,12 @@
 package com.davidykay.funge;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.davidykay.funge.interpreter.DefaultFungeModel;
 import com.davidykay.funge.interpreter.FungeModel;
@@ -35,6 +38,17 @@ public class FungeGridActivity extends Activity {
     mModel.setTileAtLocation(addTile, 0, 2);
     mModel.setTileAtLocation(sampleTile, 0, 3);
     mView.setModel(mModel);
+    mModel.getPointer().setHeading(new Point(0, 1));
+    
+    final Button advanceButton = (Button) findViewById(R.id.step);
+    advanceButton.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            // Step to the next part of the simulation.
+            mModel.advance();
+          }
+        });
+
   }
 
   @Override
