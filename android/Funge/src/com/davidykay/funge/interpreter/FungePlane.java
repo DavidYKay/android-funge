@@ -4,7 +4,7 @@ import android.graphics.Point;
 
 import com.davidykay.funge.interpreter.tiles.Tile;
 
-public class FungePlane implements FungeModel {
+public class FungePlane {
 
   public static final int NUM_ROWS    = 4;
   public static final int NUM_COLUMNS = 4;

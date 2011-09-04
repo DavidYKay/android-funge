@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.davidykay.funge.interpreter.FungePlane;
+import com.davidykay.funge.interpreter.DefaultFungeModel;
+import com.davidykay.funge.interpreter.FungeModel;
+import com.davidykay.funge.interpreter.tiles.ArithmeticTile;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
-import com.davidykay.funge.R;
 
 /**
  * Shows the funge grid. This is the signature activity in our application.
@@ -17,7 +18,7 @@ import com.davidykay.funge.R;
  */
 public class FungeGridActivity extends Activity {
 
-  private FungePlane mFunge;
+  private FungeModel mModel;
   private FungeView mView;
 
   @Override
@@ -27,12 +28,13 @@ public class FungeGridActivity extends Activity {
     setContentView(R.layout.funge_grid);
 
     mView = (FungeView) findViewById(R.id.game_view);
-    mFunge = new FungePlane();
+    mModel = new DefaultFungeModel(5, 7);
     Tile sampleTile = new IntegerTile(5);
-    mFunge.setTileAtLocation(sampleTile, 0, 0);
-    mFunge.setTileAtLocation(sampleTile, 1, 1);
-    mFunge.setTileAtLocation(sampleTile, 2, 2);
-    mView.setModel(mFunge);
+    Tile addTile = ArithmeticTile.ArithmeticTileFactory.tileFromSymbol('+');
+    mModel.setTileAtLocation(sampleTile, 0, 1);
+    mModel.setTileAtLocation(addTile, 0, 2);
+    mModel.setTileAtLocation(sampleTile, 0, 3);
+    mView.setModel(mModel);
   }
 
   @Override

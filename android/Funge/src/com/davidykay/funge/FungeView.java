@@ -3,6 +3,7 @@ package com.davidykay.funge;
 
 import com.davidykay.funge.interpreter.FungeModel;
 import com.davidykay.funge.interpreter.FungePlane;
+import com.davidykay.funge.interpreter.tiles.ArithmeticTile;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
 import com.davidykay.funge.R;
@@ -63,7 +64,7 @@ public class FungeView extends View {
 
     mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mTextPaint.setColor(HEX_COLOR_RED);
-    mTextPaint.setTextSize(20.0f);
+    mTextPaint.setTextSize(40.0f);
 
     mBmpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mGridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -106,19 +107,11 @@ public class FungeView extends View {
           if (tile instanceof IntegerTile) {
             // If integer, draw number.
             String intString = Integer.toString(((IntegerTile) tile).getInteger());
-            float[] coordinates = new float[] { 
-              (mGridRect.left + mGridRect.right) / 2,
-              (mGridRect.top + mGridRect.bottom) / 2
-            };
-            canvas.drawPosText(
-                intString,
-                coordinates,
-                mTextPaint);
-            Log.v(TAG, String.format("Drawing number %s at: (%f, %f)", 
-                                     intString,
-                                     coordinates[0],
-                                     coordinates[1]
-                                    ));
+            drawString(intString, mGridRect, mTextPaint, canvas);
+          } else if (tile instanceof ArithmeticTile) {
+            // If integer, draw number.
+            String symbolString = Character.toString(((ArithmeticTile) tile).getSymbol());
+            drawString(symbolString, mGridRect, mTextPaint, canvas);
           } else {
             // If other type, draw black.
             canvas.drawRect(mGridRect, mTilePaint);
@@ -171,6 +164,29 @@ public class FungeView extends View {
       xPixels = 0;
       yPixels += cellHeight;
     }
+  }
+
+  private void drawString(String string, Rect rect, Paint paint, Canvas canvas) {
+    Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
+    float textWidth = mTextPaint.measureText(string, 0, string.length());
+    Rect bounds = new Rect();
+    mTextPaint.getTextBounds(string, 0, string.length(), bounds);
+    //float textHeight = fontMe
+    float[] coordinates = new float[] { 
+      (rect.left + rect.right) / 2 - (textWidth / 2),
+      //(rect.top + rect.bottom) / 2
+      (rect.top + rect.bottom) / 2 - (bounds.top - bounds.bottom) / 2
+    };
+    canvas.drawPosText(
+        string,
+        coordinates,
+        mTextPaint);
+    Log.v(TAG, String.format("Drawing %s at: (%f, %f)", 
+                             string,
+                             coordinates[0],
+                             coordinates[1]
+                            ));
+
   }
   
   //@Override
@@ -228,7 +244,7 @@ public class FungeView extends View {
   }
 
   public void setModel(FungeModel model) {
-	  // TODO Auto-generated method stub
-	  mModel = model;
+    // TODO Auto-generated method stub
+    mModel = model;
   }
 }

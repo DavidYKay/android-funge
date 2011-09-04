@@ -1,11 +1,19 @@
 package com.davidykay.funge.interpreter;
 
+import java.util.Stack;
+
 import android.graphics.Point;
 
+import com.davidykay.funge.interpreter.tiles.Tile;
+
+/**
+ * Can move around the funge space as well as carrying a stack.
+ */
 public class InstructionPointer {
 
   private Point mPosition;
   private Point mHeading;
+  private Stack<Tile> mStack;
 
   public InstructionPointer() {
     this(new Point());
@@ -18,6 +26,7 @@ public class InstructionPointer {
   public InstructionPointer(Point position, Point heading) {
     mPosition = position;
     mHeading = heading;
+    mStack = new Stack<Tile>();
   }
 
   /**
@@ -42,5 +51,13 @@ public class InstructionPointer {
 
   public Point getHeading() {
     return mHeading;
+  }
+
+  public void pushTile(Tile tile) {
+    mStack.push(tile);
+  }
+  
+  public Tile popTile() {
+    return mStack.pop();
   }
 }
