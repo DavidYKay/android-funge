@@ -20,4 +20,6 @@ public interface FungeModel {
   /** Advance to the next step of the simulation. */
   public void advance();
 
+  public void addListener(FungeModelListener l);
+  public void removeListener(FungeModelListener l);
 }

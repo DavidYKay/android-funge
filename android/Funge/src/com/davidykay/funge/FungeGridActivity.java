@@ -35,8 +35,8 @@ public class FungeGridActivity extends Activity {
     Tile sampleTile = new IntegerTile(5);
     Tile addTile = ArithmeticTile.ArithmeticTileFactory.tileFromSymbol('+');
     mModel.setTileAtLocation(sampleTile, 0, 1);
-    mModel.setTileAtLocation(addTile, 0, 2);
-    mModel.setTileAtLocation(sampleTile, 0, 3);
+    mModel.setTileAtLocation(sampleTile, 0, 2);
+    mModel.setTileAtLocation(addTile, 0, 3);
     mView.setModel(mModel);
     mModel.getPointer().setHeading(new Point(0, 1));
     
@@ -48,7 +48,6 @@ public class FungeGridActivity extends Activity {
             mModel.advance();
           }
         });
-
   }
 
   @Override

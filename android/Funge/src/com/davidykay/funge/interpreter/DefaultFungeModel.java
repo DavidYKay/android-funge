@@ -1,5 +1,7 @@
 package com.davidykay.funge.interpreter;
 
+import thanks.javax.swing.event.EventListenerList;
+
 import android.graphics.Point;
 
 import com.davidykay.funge.interpreter.tiles.CodeTile;
@@ -11,6 +13,7 @@ public class DefaultFungeModel implements FungeModel {
 
   private FungePlane mPlane;
   private InstructionPointer mPointer;
+  private EventListenerList mListenerList = new EventListenerList();
   
   public DefaultFungeModel(int width, int height) {
     mPlane = new FungePlane(width, height);
@@ -70,4 +73,11 @@ public class DefaultFungeModel implements FungeModel {
     }
   }
 
+  public void addListener(FungeModelListener l) {
+    mListenerList.add(FungeModelListener.class, l);
+  }
+      
+  public void removeListener(FungeModelListener l) {
+    mListenerList.remove(FungeModelListener.class, l);
+  }
 }
