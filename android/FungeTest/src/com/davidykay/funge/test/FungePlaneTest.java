@@ -6,7 +6,7 @@ import com.davidykay.funge.interpreter.FungePlane;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
 
-public class FungeSimulationTest extends TestCase {
+public class FungePlaneTest extends TestCase {
 
   protected void setUp() throws Exception {
     super.setUp();

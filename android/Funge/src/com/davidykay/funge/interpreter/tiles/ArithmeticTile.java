@@ -4,7 +4,7 @@ import com.davidykay.funge.interpreter.FungeModel;
 import com.davidykay.funge.interpreter.InstructionPointer;
 
 
-public abstract class ArithmeticTile extends Tile {
+public abstract class ArithmeticTile extends CodeTile {
   public static class ArithmeticTileFactory {
     public static ArithmeticTile tileFromSymbol(char symbol) {
       ArithmeticTile tile = null;

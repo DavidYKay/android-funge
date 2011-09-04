@@ -65,7 +65,8 @@ public class DefaultFungeModel implements FungeModel {
         e.printStackTrace();		
       }
     } else {
-      throw new IllegalArgumentException("Invalid tile type given!");
+      throw new IllegalArgumentException(
+          String.format("Invalid tile type given: %s", tile.getClass()));
     }
   }
 
