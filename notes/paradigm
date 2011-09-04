@@ -1,0 +1,32 @@
+Data flow - Rube Goldberg
+  Pro:
+    Easier to visualize the components
+    Actor model
+  Con:
+    Hard to implement
+
+Marble paradigm
+  Pro:
+    Easier to implement
+    Recursive
+  Con:
+    Imperative
+    Hard to quickly scan
+
+Scratch
+  Pro:
+    Existing userbase
+  Con:
+    Not recursive/closed
+
+Scheme blocks
+  Pro:
+    Existing userbase
+  Con:
+    Not recursive/closed
+
+Microsoft-style
+  Pro:
+    Just like text-based
+  Con:
+    Just like text-based

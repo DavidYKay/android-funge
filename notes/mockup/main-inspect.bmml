@@ -1,0 +1,47 @@
+<mockup version="1.0" skin="sketch" measuredW="1162" measuredH="798" mockupW="1024" mockupH="768">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::HSplitter" x="377" y="33" w="-1" h="761" measuredW="12" measuredH="100" zOrder="1" locked="true" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="138" y="30" w="1024" h="768" measuredW="100" measuredH="70" zOrder="0" locked="true" isInGroup="-1"/>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TabBar" x="138" y="33" w="240" h="761" measuredW="240" measuredH="100" zOrder="2" locked="true" isInGroup="-1">
+      <controlProperties>
+        <hrefs>main-edit%26bm%3Bmain-edit.bmml%26bm%3Bmain-edit.bmml%26bm%3Bmain-edit.bmml%2Cmain-debug%26bm%3Bmain-debug.bmml%26bm%3Bmain-debug.bmml%26bm%3Bmain-debug.bmml%2Cmain-inspect%26bm%3Bmain-inspect.bmml%26bm%3Bmain-inspect.bmml%26bm%3Bmain-inspect.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2220%2C3%2C58%2C32%22%20href%3D%22main-edit.bmml%22%20alt%3D%22main-edit%22%20id%3D%225_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2258%2C3%2C106%2C32%22%20href%3D%22main-debug.bmml%22%20alt%3D%22main-debug%22%20id%3D%225_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22106%2C3%2C166%2C32%22%20href%3D%22main-inspect.bmml%22%20alt%3D%22main-inspect%22%20id%3D%225_2%22/%3E%0A</map>
+        <selectedIndex>2</selectedIndex>
+        <text>Edit%2C%20Debug%2C%20Inspect</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Image" x="389" y="32" w="773" h="761" measuredW="288" measuredH="240" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>../../../../../Pictures/games/Marblemadnessscreenshot.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::VSplitter" x="139" y="311" w="238" h="-1" measuredW="100" measuredH="12" zOrder="4" locked="true" isInGroup="-1"/>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Label" x="214" y="70" w="-1" h="-1" measuredW="87" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Inspect%20Item</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Image" x="149" y="104" w="-1" h="-1" measuredW="77" measuredH="79" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Item%20Image</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Label" x="240" y="107" w="122" h="76" measuredW="239" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20is%20a%20helpful%2C%20multi-line%20comment.</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Icon" x="149" y="198" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>DataBaseIcon%7Cmedium</icon>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Label" x="186" y="201" w="-1" h="-1" measuredW="106" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tile%20Type%3A%20Data</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
