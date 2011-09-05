@@ -1,5 +1,8 @@
 package com.davidykay.funge.interpreter;
 
-public class FungeModelListener implements java.util.EventListener {
+import java.util.Observer;
+
+//public interface FungeModelListener extends java.util.EventListener {
+public interface FungeModelListener extends Observer {
   
 }

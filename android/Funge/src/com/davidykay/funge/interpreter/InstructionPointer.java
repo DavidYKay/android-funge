@@ -1,12 +1,12 @@
 package com.davidykay.funge.interpreter;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 
 import android.graphics.Point;
 
-import com.davidykay.funge.interpreter.tiles.CodeTile;
 import com.davidykay.funge.interpreter.tiles.Tile;
-import com.davidykay.funge.interpreter.tiles.ValueTile;
 
 /**
  * Can move around the funge space as well as carrying a stack.
@@ -63,4 +63,10 @@ public class InstructionPointer {
     return mStack.pop();
   }
 
+  /**
+   * This should only be used for UI purposes.
+   */
+  public List<Tile> allTiles() {
+    return mStack;
+  }
 }

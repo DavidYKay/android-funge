@@ -9,9 +9,9 @@
   <com.davidykay.funge.FungeView
     android:id="@+id/game_view"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="0px"
     android:layout_margin="20dip"
-    android:layout_weight="1"
+    android:layout_weight="80"
     />
 
   <!--
@@ -25,11 +25,20 @@
     android:text="Only a test"
     />
   -->
+  
+  <com.davidykay.funge.StackView
+    android:id="@+id/stack_view"
+    android:layout_width="wrap_content"
+    android:layout_height="0px"
+    android:layout_margin="20dip"
+    android:layout_weight="10"
+    />
 
   <LinearLayout 
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0px"
+    android:layout_weight="10"
     android:gravity="center_horizontal"
     >
     <Button

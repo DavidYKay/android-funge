@@ -23,10 +23,10 @@ public class FungeGridActivity extends Activity {
 
   private FungeModel mModel;
   private FungeView mView;
+  private StackView mStackView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
     setContentView(R.layout.funge_grid);
 
@@ -39,6 +39,12 @@ public class FungeGridActivity extends Activity {
     mModel.setTileAtLocation(addTile, 0, 3);
     mView.setModel(mModel);
     mModel.getPointer().setHeading(new Point(0, 1));
+    
+    mStackView = (StackView) findViewById(R.id.stack_view);
+    mStackView.setPointer(mModel.getPointer());
+
+    mModel.addListener(mView);
+    mModel.addListener(mStackView);
     
     final Button advanceButton = (Button) findViewById(R.id.step);
     advanceButton.setOnClickListener(

@@ -1,6 +1,8 @@
 package com.davidykay.funge;
 
 
+import java.util.Observable;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -19,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.davidykay.funge.interpreter.FungeModel;
+import com.davidykay.funge.interpreter.FungeModelListener;
 import com.davidykay.funge.interpreter.InstructionPointer;
 import com.davidykay.funge.interpreter.tiles.ArithmeticTile;
 import com.davidykay.funge.interpreter.tiles.IntegerTile;
@@ -27,7 +30,7 @@ import com.davidykay.funge.interpreter.tiles.Tile;
 /**
  * View representing the Befunge game board.
  */
-public class FungeView extends View {
+public class FungeView extends View implements FungeModelListener {
 
   private static final int MARGIN = 4;
   private static final String TAG = "FungeView";
@@ -93,7 +96,9 @@ public class FungeView extends View {
     int columns = mModel.getWidth();
     int rows = mModel.getHeight();
 
-    int cellWidth = getWidth() / columns;
+    //int cellWidth  = canvas.getWidth() / columns;
+    //int cellHeight = canvas.getHeight() / rows;
+    int cellWidth  = getWidth() / columns;
     int cellHeight = getHeight() / rows;
     mGridRect.set(0, 0, cellWidth, cellHeight);
     Log.v(TAG, String.format("Cell Dimensions: (%d, %d)", 
@@ -172,12 +177,15 @@ public class FungeView extends View {
     // Render the instruction pointer.
     InstructionPointer pointer = mModel.getPointer();
     Point pos = pointer.getPosition();
+    Point drawPos = new Point(pos.x * cellWidth, pos.y * cellHeight);
     drawString("P", 
                new Rect(
                    //pos.x - cellWidth / 2, pos.y - cellHeight / 2, 
                    //pos.x + cellWidth / 2, pos.y + cellHeight / 2
-                   pos.x, pos.y, 
-                   pos.x + cellWidth, pos.y + cellHeight 
+                   //pos.x, pos.y, 
+                   //pos.x + cellWidth, pos.y + cellHeight 
+                   drawPos.x, drawPos.y, 
+                   drawPos.x + cellWidth, drawPos.y + cellHeight 
                  ),
                mPointerPaint,
                canvas
@@ -262,7 +270,14 @@ public class FungeView extends View {
   }
 
   public void setModel(FungeModel model) {
-    // TODO Auto-generated method stub
     mModel = model;
+  }
+
+  /**
+   * The model just updated!
+   */
+  public void update(Observable observable, Object data) {
+    // Redraw using new data.
+    invalidate();
   }
 }

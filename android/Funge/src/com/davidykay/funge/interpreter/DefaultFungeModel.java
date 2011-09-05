@@ -1,5 +1,7 @@
 package com.davidykay.funge.interpreter;
 
+import java.util.Observable;
+
 import thanks.javax.swing.event.EventListenerList;
 
 import android.graphics.Point;
@@ -13,7 +15,8 @@ public class DefaultFungeModel implements FungeModel {
 
   private FungePlane mPlane;
   private InstructionPointer mPointer;
-  private EventListenerList mListenerList = new EventListenerList();
+  //private EventListenerList mListenerList = new EventListenerList();
+  private ModelObservable mObservable = new ModelObservable();
   
   public DefaultFungeModel(int width, int height) {
     mPlane = new FungePlane(width, height);
@@ -53,7 +56,13 @@ public class DefaultFungeModel implements FungeModel {
     mPointer.move();
     // Consume the tile at the destination.
     Tile newTile = tileAtLocation(mPointer.getPosition());
-    consume(newTile);
+    if (newTile != null) {
+      consume(newTile);
+    }
+
+    // Notify listeners
+    mObservable.setChangedFlag();
+    mObservable.notifyObservers(this);
   }
 
   private void consume(Tile tile) {
@@ -74,10 +83,18 @@ public class DefaultFungeModel implements FungeModel {
   }
 
   public void addListener(FungeModelListener l) {
-    mListenerList.add(FungeModelListener.class, l);
+    //mListenerList.add(FungeModelListener.class, l);
+    mObservable.addObserver(l);
   }
       
   public void removeListener(FungeModelListener l) {
-    mListenerList.remove(FungeModelListener.class, l);
+    mObservable.deleteObserver(l);
+    //mListenerList.remove(FungeModelListener.class, l);
+  }
+
+  private class ModelObservable extends Observable {
+    public void setChangedFlag() {
+      setChanged();
+    }
   }
 }
